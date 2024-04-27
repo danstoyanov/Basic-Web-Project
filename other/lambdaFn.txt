@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <?php
+        $employees = [
+            [
+                "name" => "John",
+                 "age" => 30,
+                 "department" => "IT"
+            ],
+
+            [
+                "name" => "Jane",
+                "age" => 25,
+                "department" => "HR"
+            ],
+
+            [
+                "name" => "Jim",
+                "age" => 35,
+                "department" => "HR"
+            ],
+
+            [
+                "name" => "Jill",
+                "age" => 28,
+                "department" => "Marketing"
+            ]
+        ];
+
+        // Lambda function 👇
+        $filteredEmployees = array_filter($employees, function ($employee){
+            return $employee["age"] < 30;
+        });
+
+    ?>
+
+    <?php foreach ($filteredEmployees as $employee): ?>
+           <?php echo $employee["name"];  ?> </br>
+    <?php endforeach; ?>
+
+</body>
+</html>

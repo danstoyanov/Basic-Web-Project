@@ -1,0 +1,9 @@
+// To check the db informantion about table data!
+$dsn = "mysql:host=db;port=3306;dbname=db;user=db;password=db";
+$pdo = new PDO($dsn);
+
+$statement = $pdo->prepare("SELECT * FROM posts");
+$statement->execute();
+
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+dd($posts);
