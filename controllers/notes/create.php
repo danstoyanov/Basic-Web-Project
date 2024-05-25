@@ -1,6 +1,6 @@
 <?php
 
-require ('Validator.php');
+require('Validator.php');
 
 $config = require('config.php');
 $db = new Database($config['database']);
@@ -17,12 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errors['body'] = 'The body must be at least 1000 and required!!';
     }
 
-    // void Email validation funcion
-//    $_POST['body'] = 'test@email.com';
-//    if (!Validator::emailValidation($_POST['body'])) {
-//        var_dump('Invalid email');
-//    }
-
     // if there are no errors, that means the form is correct!
     if (empty($errors)) {
         $db->query("INSERT INTO notes(body, user_id) VALUES(:body, :user_id)", [
@@ -32,4 +26,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-require "views/note-create.view.php";
+require "views/notes/create.view.php";

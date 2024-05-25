@@ -3,7 +3,7 @@
 $header = "Note";
 $userId = 1;
 
-$config = require ('config.php');
+$config = require('config.php');
 $db = new Database($config['database']);
 
 $query = "SELECT * FROM notes WHERE id = :id";
@@ -14,4 +14,4 @@ $note = $db->query($query, [
 
 authorize($note['user_id'] === $userId);
 
-require "views/note-view.php";
+require "views/notes/show.view.php";
