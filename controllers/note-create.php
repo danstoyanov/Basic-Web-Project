@@ -1,5 +1,7 @@
 <?php
 
+require ('Validator.php');
+
 $config = require('config.php');
 $db = new Database($config['database']);
 
@@ -10,15 +12,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Server side validation
     $errors = [];
 
-    // if input body is empty
-    if (strlen($_POST["body"]) === 0) {
-        $errors['body'] = 'The body field is required.';
+    // Use void Validator class function
+    if (!Validator::textValidation($_POST["body"], 0, 1000)) {
+        $errors['body'] = 'The body must be at least 1000 and required!!';
     }
 
-    // check the length of the input body
-    if (strlen($_POST['body']) > 1000) {
-        $errors['body'] = 'The body is too long!!';
-    }
+    // void Email validation funcion
+//    $_POST['body'] = 'test@email.com';
+//    if (!Validator::emailValidation($_POST['body'])) {
+//        var_dump('Invalid email');
+//    }
 
     // if there are no errors, that means the form is correct!
     if (empty($errors)) {
